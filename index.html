@@ -9,13 +9,33 @@
 </head>
 
 <body>
-  <h2>Post</h2>
+  <h2>POST</h2>
   <form action="javascript:void(8)">
     <input type="text" id="usersName" placeholder="Enter Your Name"><br>
-    <input type="text" id="usersPost" placeholder="Enter Your Post"><br>
-    <input id="postBtn" type="submit" value="PostIt!">
+    <input type="text" id="usersPost" placeholder="Enter Your Post"><br><br>
+    <input id="postBtn" type="submit" value="POSTit!">
   </form>
-  <div id="mesResponse"></div>
+  <div id="postResponse"></div>
+
+
+  <h2>PATCH</h2>
+  <form action="javascript:void(8)">
+    <input type="text" id="userID" placeholder="Enter Your User ID"><br>
+    <input type="text" id="idNum" placeholder="Enter Your ID Number"><br>
+    <input type="text" id="userTitle" placeholder="What Is Your Title?"><br>
+    <input type="text" id="patchBody" placeholder="Explain Yourself"><br><br>
+    <input id="patchBtn" type="submit" value="PATCHit!">
+  </form>
+  <div id="patchResponse"></div>
+
+  <h2>DELETE</h2>
+  <form action="javascript:void(8)">
+    <input id="delUserId" type="submit" value="Delete User ID">
+    <input id="delId" type="submit" value="Delete ID">
+    <input id="delTitle" type="submit" value="Delete Title">
+    <input id="delBody" type="submit" value="Delete Body">
+  </form>
+  <div id="deleteResponse"></div>
   <script src='app.js'></script>
 </body>
 
