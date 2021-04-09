@@ -75,23 +75,19 @@ patchBtn.addEventListener("click", patchIt);
 
 // DELETE
 
-// function delIt() {
-let ajax = new XMLHttpRequest();
-ajax.onreadystatechange = function () {
-  if (this.readyState === 4 && this.status === 200) {
-    // This returned 200 for a status
-    // console.log(this.status);
-    console.log(JSON.parse(this.responseText));
-  }
-};
-ajax.open("DELETE", "https://jsonplaceholder.typicode.com/posts/1", true);
-ajax.setRequestHeader("Content-Type", "application/json");
-ajax.send();
-// }
+function delIt() {
+  let ajax = new XMLHttpRequest();
+  ajax.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      // This returned 200 for a status
+      // console.log(this.status);
+      console.log(this.responseText);
+    }
+  };
+  ajax.open("DELETE", "https://jsonplaceholder.typicode.com/posts/1", true);
+  ajax.send();
+}
 
-// let delUserId = document.getElementById("delUserId");
-// let delId = document.getElementById("delId");
-// let delTitle = document.getElementById("delTitle");
-// let delBody = document.getElementById("delBody");
+let delUserId = document.getElementById("delPost");
 
-// delUserId.addEventListener("click", delIt);
+delUserId.addEventListener("click", delIt);
