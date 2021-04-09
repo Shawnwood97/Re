@@ -115,7 +115,7 @@ ajax.onreadystatechange = function () {
       let postBody = allPosts[i].body;
       let postTitle = allPosts[i].title;
       let postUser = allPosts[i].id;
-      // gives each posy a unique ID for adding comments
+      // gives each post a unique ID for adding comments later
       postsWrap.innerHTML += `<div id="posty${postUser}" style="border:2px solid #000; margin-bottom: 5px;"> <h2> ${postTitle}</h2> <p>${postBody}</p> <h5>By ID: ${postUser}</h5><h4>Comments</h4></div>`;
       let comments = new XMLHttpRequest();
       comments.onreadystatechange = function () {
@@ -129,9 +129,8 @@ ajax.onreadystatechange = function () {
             if (postUser === identifyUser) {
               let postComment = allComments[i].body;
               let commentAuthor = allComments[i].email;
-              // let comment = allComments[i].body;
+              // get dynamic element from above and add each comment to the bottom with an author
               let getPost = document.getElementById(`posty${postUser}`);
-              // console.log(getPost);
               getPost.innerHTML += `<div>By: ${commentAuthor}<div><p style="border: 1px solid green;"> ${postComment}</p></div>`;
             }
           }
