@@ -107,15 +107,43 @@ ajax.onreadystatechange = function () {
     // get posts as an object
     let allPosts = JSON.parse(this.responseText);
     // log posts
-    // console.log(allPosts);
+    console.log(allPosts);
 
     // forloop to isolate each object and place each item in a variable and add each post usi innerHTML.
     for (let i = 0; i < allPosts.length; i++) {
+      // console.log(postUser);
       let postBody = allPosts[i].body;
       let postTitle = allPosts[i].title;
       let postUser = allPosts[i].id;
+      // gives each posy a unique ID for adding comments
+      postsWrap.innerHTML += `<div id="posty${postUser}" style="border:2px solid #000; margin-bottom: 5px;"> <h2> ${postTitle}</h2> <p>${postBody}</p> <h5>By ID: ${postUser}</h5><h4>Comments</h4></div>`;
+      let comments = new XMLHttpRequest();
+      comments.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          let allComments = JSON.parse(this.responseText);
+          // console.log(allComments);
 
-      postsWrap.innerHTML += `<div style="border: 2px solid black; margin-bottom: 5px;"> <h2> ${postTitle}</h2> <p>${postBody}</p> By ID: ${postUser} </div>`;
+          for (i = 0; i < allComments.length; i++) {
+            let identifyUser = allComments[i].postId;
+
+            if (postUser === identifyUser) {
+              let postComment = allComments[i].body;
+              let commentAuthor = allComments[i].email;
+              // let comment = allComments[i].body;
+              let getPost = document.getElementById(`posty${postUser}`);
+              // console.log(getPost);
+              getPost.innerHTML += `<div>By: ${commentAuthor}<div><p style="border: 1px solid green;"> ${postComment}</p></div>`;
+            }
+          }
+        }
+      };
+
+      comments.open(
+        "GET",
+        `https://jsonplaceholder.typicode.com/posts/${postUser}/comments`,
+        true
+      );
+      comments.send();
     }
   }
 };
